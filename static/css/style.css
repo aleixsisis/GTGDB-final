@@ -89,6 +89,37 @@ nav {
     transform: scale(1.03); /* Slight scale effect for more emphasis */
 }
 
+nav a {
+    display: inline-block;
+    color: #e47a8b; /* Soft pink color */
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 1.2em;
+    transition: background-color 0.5s, color 0.5s; /* Smooth hover transition */
+    border-radius: 50px;
+}
+
+nav a:hover {
+    background-color: #ffe2e9; /* Soft hover effect */
+    color: #f0526c; /* Slightly darker pink on hover */
+    border-radius: 50px;
+}
+
+nav a.active {
+    background-color: #f2576e; /* More intense pink for active link */
+    color: #ffe7e7; /* Very light pink text */
+}
+
+.nav-banner-container {
+    margin-top: 10px; /* Space between the buttons and the banner */
+    text-align: center; /* Center the banner */
+}
+
+.nav-banner {
+    max-height: 50px; /* Adjust the height as needed */
+    margin: 0 auto; /* Center the banner */
+}
+
 @keyframes fadeInText {
     0% {
         opacity: 0;
@@ -191,6 +222,11 @@ input[type=submit] {
 
 input[type=submit]:hover {
     background-color: #fbc7cd; /* Darker pink on hover */
+}
+
+.button-container {
+    text-align: center; /* Center the button */
+    margin-top: 1rem; /* Add some margin to the top */
 }
 
 button {

@@ -8,6 +8,17 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
 
     <title>Rock, Paper, RATE!</title>
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
+    <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
+
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
@@ -25,10 +36,13 @@
         {% if not session['username'] %}
         <a href="/login">Login</a>
         <a href="/register">Register</a>
-    {% else %}
+        {% else %}
         <a href="/logout">Logout</a>
-    {% endif %}
-
+        {% endif %}
+        
+        <div class="nav-banner-container">
+            <img src="{{ url_for('static', filename='images/pixel_banner.gif') }}" alt="Pixel Banner" class="nav-banner">
+        </div>
     </nav>
 
     <!-- This section will contain the page content -->

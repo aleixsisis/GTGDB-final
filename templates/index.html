@@ -4,7 +4,9 @@
 
 <div class="container">
 
+    <div class "decription-container"
     <p>Welcome to Rock, Paper, Rate! Its a database filled with user reviews of your favourite (and not-so-favourite) video games. So, make an account, sit back and rock, paper, Rate!</p>
+    </div>
 
 
     {% if session['username'] %}
@@ -12,7 +14,9 @@
     <p>Hello {{ session['username'] }}</p>
     {% endif %}
 
-    <a href="/add"><button>Add review?</button></a>
+    <div class="button-container">
+        <a href="/add"><button>Add review?</button></a>
+    </div>
 
 </div>
 
@@ -37,11 +41,7 @@
             <td>{{ review['game'] }}</td>
             <td>{{ review['score'] }}</td>
             <td>{{ review['review'] }}</td> 
-            <td>
-                {% if review['user_id'] == session['id'] %}
-                <a href="{{ url_for('Update', review_id=review['id']) }}"><button>Update</button></a>
-                {% endif %}
-            </td>          
+            <td><a href="{{ url_for('Update', review_id=review['id']) }}"><button>Update</button></a></td>          
         </tr>
         {% endfor %}
     </tbody>
