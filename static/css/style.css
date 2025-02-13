@@ -7,26 +7,13 @@
 }
 
 body {
-    background: #ad2d49; /* Soft pastel pink background */
+    background: url('/static/images/background.gif') no-repeat center center fixed; /* Replace with your image path */
+    background-size: cover; /* Ensure the background image covers the entire page */
     font-family: "Poppins", 'sans-serif';
     font-size: 1rem;
     font-weight: 400;
     color: #f05294;
-    background: linear-gradient(45deg, #ffc9db, #f0a2b9, #ffb8d3, #f38fb2);
-    animation: gradientAnimation 8s infinite, fadeInText 3s ease-out; /* Gradient animation and fade-in effect for text */
-    background-size: 600% 600%;
-}
-
-@keyframes gradientAnimation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    animation: fadeInText 3s ease-out; /* Fade-in effect for text */
 }
 
 /* Fade-in animation for text */
@@ -64,14 +51,6 @@ main {
     transform: scale(1.05); /* Slightly scaled up for a fun, bubbly feel */
 }
 
-@keyframes fadeInText {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
 nav {
     overflow: hidden;
     background: linear-gradient(180deg, #f8a0c2, #fcbad1); /* Soft gradient for a dynamic pink look */
@@ -118,36 +97,6 @@ nav a.active {
 .nav-banner {
     max-height: 50px; /* Adjust the height as needed */
     margin: 0 auto; /* Center the banner */
-}
-
-@keyframes fadeInText {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-nav a {
-    display: inline-block;
-    color: #e47a8b; /* Soft pink color */
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 1.2em;
-    transition: background-color 0.5s, color 0.5s; /* Smooth hover transition */
-    border-radius: 50px;
-}
-
-nav a:hover {
-    background-color: #ffe2e9; /* Soft hover effect */
-    color: #f0526c; /* Slightly darker pink on hover */
-    border-radius: 50px;
-}
-
-nav a.active {
-    background-color: #f2576e; /* More intense pink for active link */
-    color: #ffe7e7; /* Very light pink text */
 }
 
 .container {
@@ -239,7 +188,6 @@ button {
     cursor: pointer;
     font-size: 1.05em;
     transition: background-color 0.3s; /* Smooth hover transition */
-
 }
 
 button:hover {
