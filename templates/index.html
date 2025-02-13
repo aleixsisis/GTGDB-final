@@ -4,19 +4,20 @@
 
 <div class="container">
 
-    <div class "decription-container"
     <p>Welcome to Rock, Paper, Rate! Its a database filled with user reviews of your favourite (and not-so-favourite) video games. So, make an account, sit back and rock, paper, Rate!</p>
-    </div>
 
 
     {% if session['username'] %}
     <br>
     <p>Hello {{ session['username'] }}</p>
-    {% endif %}
-
     <div class="button-container">
         <a href="/add"><button>Add review?</button></a>
     </div>
+    {% else %}
+    <div class="button-container">
+        <a href="/login"><button>Login to add review</button></a>
+    </div>
+    {% endif %}
 
 </div>
 

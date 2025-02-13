@@ -38,15 +38,13 @@ def Register():
 @app.route("/add", methods=["GET","POST"])
 def Add():
     if session.get('username') is None:
-        return redirect("/")
+        return redirect("/login")
     if request.method == "POST":
         user_id = session['id']
         date = request.form['date']
         game = request.form['game']
         score = request.form['score']
         review = request.form['review']
-        if len(review.split()) > 10 or not (0 <= int(score) <= 10):
-            return "Review must be 10 words or less and score must be between 0 and 10."
         db.AddReview(user_id, date, game, score, review)
     return render_template("add.html")
 
@@ -55,13 +53,11 @@ def Update(review_id):
     if session.get('username') is None:
         return redirect("/login")
     review = db.GetReviewById(review_id)
-    if review is None or review['user_id'] != session['id']:
+    if review is None:
         return redirect("/")
     if request.method == "POST":
         score = request.form['score']
         review_text = request.form['review']
-        if len(review_text.split()) > 10 or not (0 <= int(score) <= 10):
-            return "Review must be 10 words or less and score must be between 0 and 10."
         db.UpdateReview(review_id, score, review_text)
         return redirect("/")
     return render_template("update.html", review=review)

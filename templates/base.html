@@ -8,18 +8,6 @@
     <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
 
     <title>Rock, Paper, RATE!</title>
-    <div class="image-container">
-        <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/rainbow.gif') }}" alt="Pixel Banner" class="nav-banner">
-        <img src="{{ url_for('static', filename='images/lil.gif') }}" alt="Pixel Banner" class="nav-banner">
-    </div>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}" />
@@ -29,7 +17,6 @@
 <body>
 
     <h1 class="banner">Rock, Paper, RATE!</h1>
-    
 
     <!-- Include a navigation menu -->
     <nav>
@@ -38,20 +25,16 @@
         {% if not session['username'] %}
         <a href="/login">Login</a>
         <a href="/register">Register</a>
-        {% else %}
+    {% else %}
         <a href="/logout">Logout</a>
-        {% endif %}
-        
-        <div class="nav-banner-container">
-            <img src="{{ url_for('static', filename='images/pixel_banner.gif') }}" alt="Pixel Banner" class="nav-banner">
-            <img src="{{ url_for('static', filename='images/pixel_banner.gif') }}" alt="Pixel Banner" class="nav-banner">
-        </div>
+    {% endif %}
+
     </nav>
 
     <!-- This section will contain the page content -->
     <main>
         {% block content %}
-        
+
         {% endblock %}
     </main>
 
