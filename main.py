@@ -6,27 +6,19 @@ app.secret_key = "sevenfoursevenseven"
 
 @app.route("/")
 def Home():
-    guessData = db.GetAllGuesses()
-    return render_template("index.html", guesses=guessData)
+    reviews = db.GetAllReviews()
+    return render_template("index.html", reviews=reviews)
 
 @app.route("/login", methods=["GET", "POST"])
 def Login():
-    # They sent us data, get the username and password
-    # then check if their details are correct.
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-
-        # Did they provide good details
         user = db.CheckLogin(username, password)
         if user:
-            # Yes! Save their username and id then
             session['id'] = user['id']
             session['username'] = user['username']
-
-            # Send them back to the homepage
             return redirect("/")
-
     return render_template("login.html")
 
 @app.route("/logout")
@@ -36,60 +28,48 @@ def Logout():
 
 @app.route("/register", methods=["GET", "POST"])
 def Register():
-    # If they click the submit button, let's register
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-
-        # Try and add them to the DB
         if db.RegisterUser(username, password):
-            # Success! Let's go to the homepage
             return redirect("/")
-        
     return render_template("register.html")
 
 @app.route("/add", methods=["GET","POST"])
 def Add():
-    # Check if they are logged in first
-    if session.get('username') == None:
+    if session.get('username') is None:
         return redirect("/")
-
-    # Did they click submit?
     if request.method == "POST":
         user_id = session['id']
         date = request.form['date']
         game = request.form['game']
         score = request.form['score']
         review = request.form['review']
-
-        # Send the data to add our new guess to the db
-        db.AddGuess(user_id, date, game, score, review)
-
+        if len(review.split()) > 10 or not (0 <= int(score) <= 10):
+            return "Review must be 10 words or less and score must be between 0 and 10."
+        db.AddReview(user_id, date, game, score, review)
     return render_template("add.html")
 
-@app.route("/update/<int:guess_id>", methods=["GET", "POST"])
-def Update(guess_id):
-    # Check if the user is logged in first
+@app.route("/update/<int:review_id>", methods=["GET", "POST"])
+def Update(review_id):
     if session.get('username') is None:
         return redirect("/login")
-
-    # Fetch the existing guess from the database
-    guess = db.GetGuessById(guess_id)  # Get guess data by ID
-
-    if guess is None:
-        return redirect("/")  # If the guess doesn't exist, redirect to homepage
-
+    review = db.GetReviewById(review_id)
+    if review is None or review['user_id'] != session['id']:
+        return redirect("/")
     if request.method == "POST":
-        # Get updated data from the form
         score = request.form['score']
-        review = request.form['review']
+        review_text = request.form['review']
+        if len(review_text.split()) > 10 or not (0 <= int(score) <= 10):
+            return "Review must be 10 words or less and score must be between 0 and 10."
+        db.UpdateReview(review_id, score, review_text)
+        return redirect("/")
+    return render_template("update.html", review=review)
 
-        # Update the guess in the database
-        db.UpdateGuess(guess_id, score, review)
-        return redirect("/")  # Redirect to the homepage after update
-
-    # Render the update page with the current guess data
-    return render_template("update.html", guess=guess)
+@app.route("/reset")
+def Reset():
+    db.ResetDatabase()
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

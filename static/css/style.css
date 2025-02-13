@@ -119,19 +119,21 @@ nav a.active {
 
 .container {
     margin-top: 2rem;
+    overflow-x: auto; /* Ensure the container can scroll horizontally if needed */
 }
 
 .guess_table {
     font-family: Nunito, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    border-radius: 100px; /* Rounded table */
+    border-radius: 8px; /* Rounded table */
+    overflow-x: auto; /* Ensure the table can scroll horizontally if needed */
 }
 
 .guess_table td, .guess_table th {
-    border: 0px solid #f8a0b8; /* Soft pastel border */
-    padding: 12px;
-    border-radius: 100px; /* Rounded table */
+    border: 0px solid #f6d5de; /* Soft pastel border */
+    padding: 8px;
+    border-radius: 15px; /* Rounded table */
 }
 
 .guess_table tr:nth-child(even) {
